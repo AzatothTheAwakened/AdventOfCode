@@ -57,12 +57,9 @@ int main(int argc, char *argv[]){
 
 }
 
-#define BUFFERSIZE 32
-
 std::vector<std::string> readInput(const char * const file){
     std::vector<std::string> values;
     std::ifstream inputFile(file);
-    char buff[BUFFERSIZE];
 
     
     for(std::string line; std::getline(inputFile, line);){
