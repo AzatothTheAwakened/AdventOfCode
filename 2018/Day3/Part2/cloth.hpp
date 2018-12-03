@@ -1,6 +1,5 @@
 #include <string>
 #include <vector>
-#include <set>
 
 
 class Cloth{
@@ -13,8 +12,6 @@ private:
     int m_heigth;
 
     std::vector<std::vector<bool>> m_grid;
-
-    static std::set<int> s_knownIds;
 
 
 public:
@@ -47,10 +44,7 @@ public:
 
 
 
-    static long overlapping(const std::vector<Cloth> &source, std::vector<std::vector<std::vector<int>>> &dest);
-    static int nonOverlappingId(const std::vector<std::vector<std::vector<int>>> &grid);
-
-    static const std::set<int> &getKnownIds();
+    static long overlapping(const std::vector<Cloth> &source);
 
 private:
     void calcGrid();

@@ -33,21 +33,25 @@ int main(int argc, char *argv[]){
     }
     high_resolution_clock::time_point t1 = high_resolution_clock::now();
 
-    std::vector<Cloth> cloths;
+    vector<Cloth> cloths;
     readInput(argv[1], cloths);
-    long overlappingCount = Cloth::overlapping(cloths);
+
+    vector<vector<vector<int>>> grid;
+    long overlappingCount = Cloth::overlapping(cloths, grid);
 
     high_resolution_clock::time_point t2 = high_resolution_clock::now();
     
-    auto duration = duration_cast<milliseconds>(t2 - t1).count();
+    int nonOverlappingId = Cloth::nonOverlappingId(grid);
+
+    high_resolution_clock::time_point t3 = high_resolution_clock::now();
 
 
-    std::cout << "Result: " << overlappingCount << "\t Time: " << duration << std::endl;
-
-    // Cloth c(string("#1 @ 1,3: 4x4"));
-
-    // cout << c.getBeginX() << "-" << c.getEndX() << endl;
-    // cout << c.getBeginY() << "-" << c.getEndY() << endl;
+    auto duration1 = duration_cast<milliseconds>(t2 - t1).count();
+    auto duration2 = duration_cast<milliseconds>(t3 - t2).count();
+    auto duration3 = duration_cast<milliseconds>(t3 - t1).count();
+    cout << "Result Overlapping: " << overlappingCount << "\t Time: " << duration1 << endl;
+    cout << "Result NonOverlapping: " << nonOverlappingId << "\t Time: " << duration2 << endl;
+    cout << "Time combined: " << duration3 << endl;
 
     return 0;
 }
